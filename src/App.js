@@ -17,7 +17,7 @@ function App() {
   const [search, setSearch] = useState("");
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
-
+  const handleDelete = () => {};
   const [items, setItems] = useState([
     {
       id: 1,
@@ -71,7 +71,10 @@ function App() {
 
           <Route path="/about" element={<About />} />
 
-          <Route path="/postpage/:id" element={<PostPage />} />
+          <Route
+            path="/post/:id"
+            element={<PostPage items={items} handleDelete={handleDelete} />}
+          />
           <Route path="*" element={<Missing />} />
         </Routes>
 
