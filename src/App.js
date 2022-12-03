@@ -19,11 +19,12 @@ import {
   useHistory,
 } from "react-router-dom";
 function App() {
+  const [search, setSearch] = useState("");
   return (
     <div className="App">
       <Router>
-        <Header />
-        <Nav />
+        <Header title="Webdev Blogs" />
+        <Nav search={search} setSearch={setSearch} />
 
         <Routes>
           <Route path="/" element={<Home />} />
