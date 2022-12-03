@@ -4,9 +4,11 @@ import Feed from "./Feed";
 const Home = ({ items }) => {
   return (
     <main className="flex-col  h-[100vh]">
-      {items.map((item) => {
-        return <Feed key={item.id} item={item} />;
-      })}
+      {items.length ? (
+        <Feed items={items} />
+      ) : (
+        <p className="text-red-600 p-8">no post to display !!</p>
+      )}
     </main>
   );
 };
