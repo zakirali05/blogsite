@@ -12,14 +12,12 @@ import Footer from "./Footer";
 import Missing from "./Missing";
 import React from "react";
 // import { ReactDOM } from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  useHistory,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 function App() {
   const [search, setSearch] = useState("");
+  const [title, setTitle] = useState("");
+  const [body, setBody] = useState("");
+
   const [items, setItems] = useState([
     {
       id: 1,
@@ -42,6 +40,13 @@ function App() {
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     },
   ]);
+  const addingpost = (e) => {
+    e.prevent.default();
+    const id = items.length ? items.length : 1;
+    const obj = { id, title, body };
+    const newitems = [...items, obj];
+    setItems(newitems);
+  };
   return (
     <div className="App">
       <Router>
@@ -51,7 +56,18 @@ function App() {
         <Routes>
           <Route path="/" element={<Home items={items} />} />
 
-          <Route path="/addpost" element={<AddPost />} />
+          <Route
+            path="/addpost"
+            element={
+              <AddPost
+                title={title}
+                setTitle={setTitle}
+                body={body}
+                setBody={setBody}
+                addingpost={addingpost}
+              />
+            }
+          />
 
           <Route path="/about" element={<About />} />
 
