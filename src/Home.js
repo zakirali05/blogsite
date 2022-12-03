@@ -3,7 +3,7 @@ import Feed from "./Feed";
 
 const Home = ({ items }) => {
   return (
-    <main className="flex-col  h-[100vh]">
+    <main className="flex-col mb-40  h-[100vh]">
       {items.length ? (
         <Feed items={items} />
       ) : (
