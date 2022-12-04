@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 // import { useHistory } from "react-router-dom";
 import Header from "./Header";
@@ -14,6 +14,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 function App() {
   const [search, setSearch] = useState("");
+  const [searchResult, setSearchResult] = useState([]);
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const handleDelete = (id) => {
@@ -43,12 +44,22 @@ function App() {
     },
   ]);
   const addingpost = (e) => {
-    e.prevent.default();
-    const id = items.length ? items.length : 1;
-    const obj = { id, title, body };
-    const newitems = [...items, obj];
-    setItems(newitems);
+    e.preventDefault();
+    const id = items.length ? items[items.length - 1].id + 1 : 1;
+    const newitem = { id, title: title, desc: body };
+    const allitems = [...items, newitem];
+    setItems(allitems);
+    setTitle("");
+    setBody("");
   };
+  useEffect(() => {
+    const filtered = items.filter(
+      (item) =>
+        item.desc.toLowerCase().includes(search.toLowerCase()) ||
+        item.title.toLowerCase().includes(search.toLowerCase())
+    );
+    setSearchResult(filtered.reverse());
+  }, [items, search]);
   return (
     <div className="App">
       <Router>
@@ -56,7 +67,7 @@ function App() {
         <Nav search={search} setSearch={setSearch} />
 
         <Routes>
-          <Route path="/" element={<Home items={items} />} />
+          <Route path="/" element={<Home items={searchResult} />} />
 
           <Route
             path="/addpost"

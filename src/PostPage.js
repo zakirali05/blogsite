@@ -20,7 +20,7 @@ const PostPage = ({ items, handleDelete }) => {
           </>
         )}
         {!post && (
-          <main className="absolute flex-col items-center justify-center top-[40%] left-[25%]">
+          <main className="absolute flex-col items-center justify-center top-[40%] left-[25%] ">
             <h2 className="text-red-700">Post has been deleted!!</h2>
 
             <Link to="/">
