@@ -1,6 +1,5 @@
-import { useEffect } from "react";
 import { useState } from "react";
-import { useParams } from "react";
+
 // import { useHistory } from "react-router-dom";
 import Header from "./Header";
 import Nav from "./Nav";
@@ -11,13 +10,16 @@ import About from "./About";
 import Footer from "./Footer";
 import Missing from "./Missing";
 import React from "react";
-// import { ReactDOM } from "react";
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 function App() {
   const [search, setSearch] = useState("");
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
-  const handleDelete = () => {};
+  const handleDelete = (id) => {
+    const itemlist = items.filter((item) => item.id !== id);
+    setItems(itemlist);
+  };
   const [items, setItems] = useState([
     {
       id: 1,

@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 const PostPage = ({ items, handleDelete }) => {
   const { id } = useParams();
@@ -18,6 +18,17 @@ const PostPage = ({ items, handleDelete }) => {
               Delete
             </button>
           </>
+        )}
+        {!post && (
+          <main className="absolute flex-col items-center justify-center top-[40%] left-[25%]">
+            <h2 className="text-red-700">Post has been deleted!!</h2>
+
+            <Link to="/">
+              <button className=" my-4  bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+                visit out home page
+              </button>
+            </Link>
+          </main>
         )}
       </article>
     </main>

@@ -25,7 +25,7 @@ const Nav = ({ search, setSearch }) => {
           </Link>
           <Link to={"/addpost"}>
             <li className="hover:bg-white hover:text-black cursor-pointer p-1">
-              AddPost
+              Addpost
             </li>
           </Link>
           <Link to={"/about"}>
